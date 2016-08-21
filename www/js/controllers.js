@@ -1,7 +1,19 @@
 angular.module('starter.controllers', [])
 
   .controller('PlaygroundController', function($scope) {
+    $scope.post =  {
+      message : ''
+    };
 
+    $scope.posts = [];
+
+    $scope.addPost = function() {
+      $scope.posts.unshift($scope.post);
+
+      $scope.post = {
+        message: ''
+      };
+    };
   })
 
 .controller('DashCtrl', function($scope) {})
