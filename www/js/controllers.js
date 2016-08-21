@@ -1,14 +1,17 @@
 angular.module('starter.controllers', [])
 
-  .controller('PlaygroundController', function($scope) {
+  .controller('PlaygroundController', function($scope, $firebaseArray) {
+    var postsDatabaseRef = new Firebase("https://sweltering-inferno-3978.firebaseio.com").child('posts');
+    var postsData = $firebaseArray(postsDatabaseRef);
+
     $scope.post =  {
       message : ''
     };
 
-    $scope.posts = [];
+    $scope.posts = postsData;
 
     $scope.addPost = function() {
-      $scope.posts.unshift($scope.post);
+      $scope.posts.$add($scope.post);
 
       $scope.post = {
         message: ''
